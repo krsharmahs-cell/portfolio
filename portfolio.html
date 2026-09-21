@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Keshav Sharma | ML &amp; Data Science Portfolio</title>
+<meta name="description" content="Portfolio of Keshav Sharma, a B.Tech CSE (AI &amp; ML) student building end-to-end machine learning projects in Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500..700&display=swap" rel="stylesheet">
+<script>
+(function () {
+  try {
+    var s = localStorage.getItem('kv-theme');
+    if (s === 'light' || s === 'dark') document.documentElement.setAttribute('data-theme', s);
+  } catch (e) {}
+})();
+</script>
+<style>
+:root {
+  --bg: #FFFFFF;
+  --alt: #F3F6FA;
+  --surface: #FFFFFF;
+  --ink: #15243A;
+  --muted: #4F6077;
+  --line: #D9E0EA;
+  --accent: #1F5FAE;
+  --on-accent: #FFFFFF;
+  --up: #B3361F;
+  --gold: #B98A2E;
+  --navy: #0E2843;
+  --on-navy: #F2F6FB;
+  --on-navy-muted: #B6C5D8;
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1626;
+    --alt: #0F1D31;
+    --surface: #142238;
+    --ink: #E6ECF4;
+    --muted: #9DB0C6;
+    --line: #24354D;
+    --accent: #7FB2F0;
+    --on-accent: #06182C;
+    --up: #FF8A73;
+    --gold: #D4A83F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1626;
+  --alt: #0F1D31;
+  --surface: #142238;
+  --ink: #E6ECF4;
+  --muted: #9DB0C6;
+  --line: #24354D;
+  --accent: #7FB2F0;
+  --on-accent: #06182C;
+  --up: #FF8A73;
+  --gold: #D4A83F;
+  color-scheme: dark;
+}
+
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 4.5rem); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.on-navy :focus-visible { outline-color: #fff; }
+.wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; }
+
+/* Buttons and links */
+.btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  padding: 0.8rem 1.3rem;
+  border-radius: 4px;
+  border: 1.5px solid var(--accent);
+  text-decoration: none;
+}
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-outline { border-color: var(--line); color: var(--ink); }
+.btn-outline:hover { border-color: var(--accent); }
+.on-navy .btn-primary { background: #FFFFFF; border-color: #FFFFFF; color: var(--navy); }
+.on-navy .btn-outline { border-color: rgba(255, 255, 255, 0.4); color: #FFFFFF; }
+.on-navy .btn-outline:hover { border-color: #FFFFFF; }
+.text-link { font-weight: 600; color: var(--accent); text-underline-offset: 0.25em; }
+.text-link:hover { text-decoration-thickness: 2px; }
+
+/* Header */
+.navy { background: var(--navy); color: var(--on-navy); }
+.site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.bar { max-width: 72rem; margin: 0 auto; padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+.brand { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; color: #FFFFFF; text-decoration: none; }
+.nav { display: flex; gap: 1.5rem; margin-left: auto; font-size: 0.9rem; font-weight: 500; }
+.nav a { color: var(--on-navy-muted); text-decoration: none; padding: 0.25rem 0; }
+.nav a:hover { color: #FFFFFF; }
+.theme-btn { font-family: var(--sans); font-size: 0.8rem; font-weight: 500; color: var(--on-navy); background: transparent; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 4px; padding: 0.35rem 0.8rem; cursor: pointer; }
+.theme-btn:hover { border-color: #FFFFFF; }
+@media (max-width: 45rem) {
+  .theme-btn { margin-left: auto; }
+  .nav { order: 3; width: 100%; margin-left: 0; overflow-x: auto; white-space: nowrap; padding-bottom: 0.15rem; }
+}
+
+/* Hero */
+.hero { padding: 4.5rem 0 5rem; border-bottom: 3px solid var(--gold); }
+.hero-grid { display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 58rem) {
+  .hero { padding: 6rem 0 6.5rem; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) 21rem; gap: 5rem; }
+}
+.role { font-size: 1rem; color: var(--on-navy-muted); margin: 0 0 1rem; }
+.hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(3rem, 6.4vw, 5.25rem); line-height: 1; letter-spacing: -0.02em; color: #FFFFFF; margin: 0 0 1.5rem; }
+.hero h1::after { content: ""; display: block; width: 3.5rem; height: 3px; background: var(--gold); margin-top: 1.5rem; }
+.lede { font-family: var(--serif); font-size: 1.4rem; line-height: 1.5; color: var(--on-navy); max-width: 36rem; margin: 0 0 2rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.glance { margin: 0; padding: 0.4rem 1.4rem; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 6px; background: rgba(255, 255, 255, 0.05); }
+.glance > div { padding: 1rem 0; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.glance > div:first-child { border-top: 0; }
+.glance dt { font-size: 0.82rem; color: var(--on-navy-muted); }
+.glance dd { margin: 0.1rem 0 0; font-family: var(--serif); font-size: 1.2rem; line-height: 1.35; font-weight: 600; color: #FFFFFF; }
+
+/* Sections */
+.section { padding: 5rem 0; background: var(--bg); }
+.section.alt { background: var(--alt); }
+.section-grid { display: grid; gap: 2rem; }
+@media (min-width: 52rem) {
+  .section-grid { grid-template-columns: 12rem minmax(0, 1fr); gap: 3rem; }
+  .section-title { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 5.5rem); align-self: start; }
+}
+.section-title { font-family: var(--serif); font-weight: 600; font-size: 1.9rem; letter-spacing: -0.015em; line-height: 1.2; margin: 0; }
+.section-title::after { content: ""; display: block; width: 2.5rem; height: 3px; background: var(--gold); margin-top: 0.8rem; }
+.content { min-width: 0; }
+.content.narrow { max-width: 44rem; }
+.content p { margin: 0 0 1.1rem; }
+.content > p:first-child { margin-top: 0; }
+
+/* About */
+.subhead { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; margin: 2.25rem 0 0.9rem; }
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { position: relative; padding: 0.7rem 0 0.7rem 1.4rem; border-top: 1px solid var(--line); }
+.list li:last-child { border-bottom: 1px solid var(--line); }
+.list li::before { content: ""; position: absolute; left: 0; top: 1.3rem; width: 0.5rem; height: 0.5rem; background: var(--gold); border-radius: 1px; }
+
+/* Skills */
+.skill-groups { display: grid; gap: 2.25rem 3rem; }
+@media (min-width: 44rem) { .skill-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.skill-group h3 { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; margin: 0; }
+.chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.7rem 0 0; padding: 0; }
+.chips li { font-size: 0.88rem; line-height: 1.3; padding: 0.35rem 0.7rem; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+
+/* Projects */
+.project { background: var(--alt); border: 1px solid var(--line); border-top: 3px solid var(--navy); border-radius: 4px; padding: 2rem 1.5rem; margin-bottom: 2.5rem; }
+:root[data-theme="dark"] .project { border-top-color: var(--accent); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .project { border-top-color: var(--accent); } }
+.project:last-child { margin-bottom: 0; }
+@media (min-width: 44rem) { .project { padding: 2.25rem 2.5rem; } }
+.project-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1.5rem; margin-bottom: 1.1rem; }
+.project h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 3vw, 1.75rem); line-height: 1.25; letter-spacing: -0.01em; margin: 0; }
+.when { font-size: 0.88rem; color: var(--muted); margin: 0; }
+.project p { max-width: 42rem; }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0; margin: 1.5rem 0; padding: 0; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+.figures > div { display: flex; flex-direction: column-reverse; padding: 1rem 1.2rem; border-left: 1px solid var(--line); }
+.figures > div:first-child { border-left: 0; }
+.figures dt { font-size: 0.82rem; line-height: 1.35; color: var(--muted); }
+.figures dd { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 1.8rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.stack-label { font-size: 0.85rem; font-weight: 600; margin: 1.5rem 0 0 !important; }
+.project .chips { margin-bottom: 1.5rem; }
+.project .chips li { background: var(--surface); }
+
+/* Churn explainer */
+.explainer { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 1.4rem; margin: 1.75rem 0 0; }
+.explainer h4 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; margin: 0; }
+.ex-note { font-size: 0.88rem !important; line-height: 1.55; color: var(--muted); margin: 0.3rem 0 1.4rem !important; max-width: 40rem; }
+.demo-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 46rem) { .demo-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 2.25rem; } }
+.field { margin: 0 0 1.1rem; padding: 0; border: 0; min-width: 0; }
+.field legend, .lab { display: flex; justify-content: space-between; gap: 1rem; width: 100%; padding: 0; margin: 0 0 0.4rem; font-size: 0.88rem; font-weight: 600; }
+.lab output { color: var(--muted); font-weight: 500; font-variant-numeric: tabular-nums; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.seg-opt { position: relative; }
+.seg-opt + .seg-opt { border-left: 1px solid var(--line); }
+.seg-opt input { position: absolute; opacity: 0; pointer-events: none; }
+.seg-opt span { display: block; text-align: center; padding: 0.5rem 0.3rem; font-size: 0.82rem; line-height: 1.25; color: var(--muted); cursor: pointer; }
+.seg-opt input:checked + span { background: var(--accent); color: var(--on-accent); font-weight: 600; }
+.seg-opt input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: -3px; }
+.explainer input[type="range"] { width: 100%; margin: 0; accent-color: var(--accent); }
+.check { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; cursor: pointer; }
+.check input { width: 1.1rem; height: 1.1rem; accent-color: var(--accent); margin: 0; }
+.result { border-top: 1px solid var(--line); padding-top: 1.15rem; }
+@media (min-width: 46rem) { .result { border-top: 0; padding-top: 0; border-left: 1px solid var(--line); padding-left: 2.25rem; } }
+.score { display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
+.score-num { font-family: var(--serif); font-weight: 700; font-size: 3rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.score-tag { font-weight: 600; font-size: 0.92rem; }
+.score-tag[data-level="high"] { color: var(--up); }
+.score-tag[data-level="low"] { color: var(--accent); }
+.bars { list-style: none; margin: 1.1rem 0 0; padding: 0; display: grid; gap: 0.7rem; }
+.bar-row { display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr) 3rem; gap: 0.6rem; align-items: center; font-size: 0.8rem; line-height: 1.3; }
+.bar-track { position: relative; height: 0.7rem; }
+.bar-track::before { content: ""; position: absolute; left: 50%; top: -0.25rem; bottom: -0.25rem; width: 1px; background: var(--muted); opacity: 0.55; }
+.bar-fill { position: absolute; top: 0; bottom: 0; width: 0; transition: width 0.55s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.bar-fill.up { left: 50%; background: var(--up); border-radius: 0 3px 3px 0; }
+.bar-fill.down { right: 50%; background: var(--accent); border-radius: 3px 0 0 3px; }
+.bar-val { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.legend { margin: 1rem 0 0 !important; font-size: 0.8rem; color: var(--muted); }
+.key { display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 2px; margin-right: 0.35rem; vertical-align: -0.05rem; }
+.key.up { background: var(--up); }
+.key.down { background: var(--accent); margin-left: 0.9rem; }
+
+/* Certificates */
+.training { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 4px; padding: 1.4rem 1.5rem; }
+.training h4 { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; line-height: 1.35; margin: 0; }
+.training .org { margin: 0.15rem 0 0; color: var(--muted); font-size: 0.92rem; }
+.training .when { margin: 0.15rem 0 0.9rem; }
+.training p:last-child { margin: 0; font-size: 0.97rem; }
+.cert-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0 3rem; }
+@media (min-width: 44rem) { .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.cert-grid li { padding: 1rem 0; border-top: 1px solid var(--line); }
+.cert-grid h4 { font-family: var(--serif); font-weight: 600; font-size: 1.08rem; line-height: 1.35; margin: 0; }
+.cert-grid p { margin: 0.1rem 0 0; font-size: 0.9rem; color: var(--muted); }
+
+/* Education */
+.edu { list-style: none; margin: 0; padding: 0; }
+.edu li { display: grid; gap: 0.15rem 2rem; padding: 1.4rem 0; border-top: 1px solid var(--line); }
+.edu li:last-child { border-bottom: 1px solid var(--line); }
+@media (min-width: 46rem) { .edu li { grid-template-columns: 10.5rem minmax(0, 1fr) auto; align-items: baseline; } }
+.edu .when { font-size: 0.9rem; }
+.edu h3 { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; line-height: 1.35; margin: 0; }
+.edu .place { margin: 0.1rem 0 0; color: var(--muted); font-size: 0.95rem; }
+.edu .score-out { font-family: var(--serif); font-weight: 600; font-size: 1.45rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.edu .score-out small { font-family: var(--sans); font-weight: 400; font-size: 0.8rem; color: var(--muted); margin-left: 0.3rem; }
+
+/* Contact and footer */
+.contact { background: var(--navy); color: var(--on-navy); }
+.contact .section-title { color: #FFFFFF; }
+.contact p { color: var(--on-navy); font-family: var(--serif); font-size: 1.3rem; line-height: 1.5; }
+.contact .actions { margin-top: 1.75rem; }
+.site-footer { background: var(--navy); color: var(--on-navy-muted); border-top: 1px solid rgba(255, 255, 255, 0.12); padding: 1.5rem 0 2rem; font-size: 0.88rem; }
+.site-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; }
+.site-footer a { text-decoration: none; }
+.site-footer a:hover { color: #FFFFFF; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header on-navy">
+  <div class="bar">
+    <a class="brand" href="#top">Keshav Sharma</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button">Dark theme</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero navy on-navy">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="role">B.Tech student, Computer Science &amp; Engineering (AI &amp; ML)</p>
+        <h1>Keshav<br>Sharma</h1>
+        <p class="lede">I build machine learning projects end to end, from raw data and analysis to a working application.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-outline" href="mailto:krsharmahs@gmail.com?subject=Hello%20Keshav">Email me</a>
+          <a class="btn btn-outline" href="https://github.com/krsharmahs" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <dl class="glance">
+        <div><dt>University</dt><dd>Lovely Professional University</dd></div>
+        <div><dt>CGPA</dt><dd>8.19</dd></div>
+        <div><dt>Projects</dt><dd>2 end-to-end ML projects</dd></div>
+        <div><dt>Focus</dt><dd>Machine learning and data science</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap section-grid">
+      <h2 class="section-title">About</h2>
+      <div class="content narrow">
+        <p>I'm a third-year B.Tech student in Computer Science &amp; Engineering (AI &amp; ML) at Lovely Professional University. I like taking a problem the whole way through: exploring the data, engineering features, training a model, and putting the result into something a person can actually use.</p>
+        <p>My two projects so far, a customer churn predictor and a healthcare screening app, both follow that path. Alongside them I practice data structures and algorithms, and I'm now learning deep learning, generative AI and RAG.</p>
+        <h3 class="subhead">Achievements</h3>
+        <ul class="list">
+          <li>Participated in Code-A-Hunt 2.0, a state-level inter-university hackathon</li>
+          <li>Solved 80+ coding problems on LeetCode</li>
+          <li>Maintain a GitHub portfolio of project and algorithm implementations at <a class="text-link" href="https://github.com/krsharmahs" target="_blank" rel="noopener">github.com/krsharmahs</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="skills">
+    <div class="wrap section-grid">
+      <h2 class="section-title">Skills</h2>
+      <div class="content">
+        <div class="skill-groups">
+          <div class="skill-group"><h3>Languages</h3><ul class="chips"><li>C</li><li>C++</li><li>Java</li><li>Python</li></ul></div>
+          <div class="skill-group"><h3>Data and ML</h3><ul class="chips"><li>NumPy</li><li>Pandas</li><li>Matplotlib</li><li>Exploratory Data Analysis</li><li>Scikit-learn</li><li>Machine Learning Fundamentals</li></ul></div>
+          <div class="skill-group"><h3>Web</h3><ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul></div>
+          <div class="skill-group"><h3>Backend and APIs</h3><ul class="chips"><li>Flask</li><li>REST APIs</li><li>PostgreSQL</li></ul></div>
+          <div class="skill-group"><h3>Tools</h3><ul class="chips"><li>Git</li><li>GitHub</li><li>VS Code</li><li>Jupyter Notebook</li><li>Selenium</li><li>Jira</li></ul></div>
+          <div class="skill-group"><h3>Core concepts</h3><ul class="chips"><li>Data Structures and Algorithms</li><li>Object-Oriented Programming</li><li>DBMS</li><li>Operating Systems</li><li>Computer Networks</li></ul></div>
+          <div class="skill-group"><h3>Soft skills</h3><ul class="chips"><li>Leadership</li><li>Team Collaboration</li><li>Adaptability</li><li>Continuous Learning</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="wrap section-grid">
+      <h2 class="section-title">Projects</h2>
+      <div class="content">
+
+        <article class="project">
+          <div class="project-head">
+            <h3>Telecom Customer Churn Prediction</h3>
+            <p class="when">Jun 2026 to Jul 2026</p>
+          </div>
+          <p>A machine learning pipeline that predicts which telecom customers are likely to leave, early enough for a team to step in and keep them.</p>
+          <p>I built it end to end on 7,000+ customer records: exploratory data analysis, preprocessing, feature engineering and model training. I evaluated it with ROC-AUC, precision, recall, F1-score and a confusion matrix.</p>
+          <p>A Streamlit dashboard gives a real-time churn-risk score for each individual customer, with SHAP explanations so it's clear which factors drove the score.</p>
+
+          <div class="explainer" role="group" aria-labelledby="ex-title">
+            <h4 id="ex-title">Try it: how a churn score gets explained</h4>
+            <p class="ex-note">A toy version of what the dashboard shows. Change the customer and watch the reasons shift. The weights are made up for illustration and are not from my trained model.</p>
+            <div class="demo-grid">
+              <div>
+                <fieldset class="field">
+                  <legend>Contract</legend>
+                  <div class="seg">
+                    <label class="seg-opt"><input type="radio" name="contract" value="m2m" checked><span>Month-to-month</span></label>
+                    <label class="seg-opt"><input type="radio" name="contract" value="one"><span>1 year</span></label>
+                    <label class="seg-opt"><input type="radio" name="contract" value="two"><span>2 years</span></label>
+                  </div>
+                </fieldset>
+                <div class="field">
+                  <label class="lab" for="tenure"><span>Tenure</span><output id="tenureVal" for="tenure">8 months</output></label>
+                  <input id="tenure" type="range" min="1" max="72" value="8">
+                </div>
+                <div class="field">
+                  <label class="lab" for="charges"><span>Monthly charges</span><output id="chargesVal" for="charges">$85</output></label>
+                  <input id="charges" type="range" min="20" max="120" value="85">
+                </div>
+                <div class="field">
+                  <label class="check"><input id="support" type="checkbox"> Has a tech support add-on</label>
+                </div>
+              </div>
+              <div class="result">
+                <div class="score" aria-live="polite">
+                  <span class="score-num" id="scoreNum">85%</span>
+                  <span class="score-tag" id="scoreTag" data-level="high">High churn risk</span>
+                </div>
+                <ul class="bars" id="bars" aria-label="How each input moves the risk score"></ul>
+                <p class="legend"><span class="key up"></span>Raises risk<span class="key down"></span>Lowers risk</p>
+              </div>
+            </div>
+          </div>
+
+          <p class="stack-label">Built with</p>
+          <ul class="chips"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>XGBoost</li><li>SHAP</li><li>Streamlit</li><li>Joblib</li></ul>
+          <a class="text-link" href="https://github.com/krsharmahs" target="_blank" rel="noopener">View on GitHub</a>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <h3>Spec Key: ML-Based Healthcare Screening Application</h3>
+            <p class="when">Jan 2026 to Feb 2026</p>
+          </div>
+          <p>A desktop application that identifies at-risk patients. I analyzed the dataset, engineered features and trained a Random Forest classifier, covering the full workflow from raw data to prediction.</p>
+          <p>After removing leakage-prone and low-information features, the model reached the results below. The small train-test gap suggests it generalizes rather than memorizing the training data.</p>
+          <dl class="figures">
+            <div><dt>Held-out accuracy</dt><dd>97.02%</dd></div>
+            <div><dt>Precision, recall and F1-score</dt><dd>96.55%</dd></div>
+            <div><dt>Train-test gap</dt><dd>0.15%</dd></div>
+          </dl>
+          <p class="stack-label">Built with</p>
+          <ul class="chips"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Scikit-learn</li><li>XGBoost</li><li>Tkinter</li></ul>
+          <a class="text-link" href="https://github.com/krsharmahs" target="_blank" rel="noopener">View on GitHub</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="certificates">
+    <div class="wrap section-grid">
+      <h2 class="section-title">Training and certificates</h2>
+      <div class="content">
+        <h3 class="subhead" style="margin-top:0">Training</h3>
+        <div class="training">
+          <h4>Python, Machine Learning &amp; GenAI for Next-Gen Engineers</h4>
+          <p class="org">ALX Code</p>
+          <p class="when">Jun 2026 to Jul 2026</p>
+          <p>Strengthened my Python and data manipulation skills with Pandas and NumPy. Covered classification, regression, clustering, association, feature extraction and model evaluation, and I'm building knowledge of deep learning, generative AI, prompt engineering and RAG-based applications.</p>
+        </div>
+
+        <h3 class="subhead">Certificates</h3>
+        <ul class="cert-grid">
+          <li><h4>Database Management System, Part 1</h4><p>Infosys Springboard, Sep 1, 2026</p></li>
+          <li><h4>Programming in Java</h4><p>iamneo, LPU, May 20, 2026</p></li>
+          <li><h4>Data Structures and Algorithms</h4><p>iamneo, LPU, Jan 15, 2026</p></li>
+          <li><h4>Programming Using C++</h4><p>Infosys Springboard, Aug 21, 2025</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="wrap section-grid">
+      <h2 class="section-title">Education</h2>
+      <div class="content">
+        <ol class="edu">
+          <li>
+            <span class="when">Jul 2024 to present</span>
+            <div>
+              <h3>B.Tech, Computer Science &amp; Engineering (AI &amp; ML)</h3>
+              <p class="place">Lovely Professional University</p>
+            </div>
+            <span class="score-out">8.19<small>CGPA</small></span>
+          </li>
+          <li>
+            <span class="when">Apr 2022 to Mar 2023</span>
+            <div>
+              <h3>Intermediate</h3>
+              <p class="place">Him Academy Public School, Hamirpur, Himachal Pradesh</p>
+            </div>
+            <span class="score-out">87%</span>
+          </li>
+          <li>
+            <span class="when">Apr 2020 to Mar 2021</span>
+            <div>
+              <h3>Matriculation</h3>
+              <p class="place">M.S.C Senior Secondary School, Sujanpur Tira, Himachal Pradesh</p>
+            </div>
+            <span class="score-out">97%</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact on-navy" id="contact">
+    <div class="wrap section-grid">
+      <h2 class="section-title">Contact</h2>
+      <div class="content narrow">
+        <p>I'm looking for internships and entry-level roles in machine learning and data science. Email is the quickest way to reach me.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:krsharmahs@gmail.com?subject=Hello%20Keshav">krsharmahs@gmail.com</a>
+          <a class="btn btn-outline" href="https://github.com/krsharmahs" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>&copy; 2026 Keshav Sharma</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* Theme toggle: follows the viewer's system setting until they choose */
+  var root = document.documentElement;
+  var btn = document.getElementById('themeBtn');
+  function effective() {
+    var a = root.getAttribute('data-theme');
+    if (a === 'light' || a === 'dark') return a;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function syncBtn() {
+    var isDark = effective() === 'dark';
+    btn.textContent = isDark ? 'Light theme' : 'Dark theme';
+    btn.setAttribute('aria-label', 'Switch to ' + (isDark ? 'light' : 'dark') + ' theme');
+  }
+  btn.addEventListener('click', function () {
+    var next = effective() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('kv-theme', next); } catch (e) {}
+    syncBtn();
+  });
+  syncBtn();
+
+  /* Illustrative churn explainer (made-up weights, not the trained model) */
+  var CONTRACTS = {
+    m2m: { name: 'Month-to-month contract', w: 1.1 },
+    one: { name: 'One-year contract', w: -0.45 },
+    two: { name: 'Two-year contract', w: -1.3 }
+  };
+  var BASE = -0.6;
+  var SCALE = 2;
+
+  var tenureEl = document.getElementById('tenure');
+  var chargesEl = document.getElementById('charges');
+  var supportEl = document.getElementById('support');
+  var tenureVal = document.getElementById('tenureVal');
+  var chargesVal = document.getElementById('chargesVal');
+  var scoreNum = document.getElementById('scoreNum');
+  var scoreTag = document.getElementById('scoreTag');
+  var list = document.getElementById('bars');
+  var rows = [];
+  var ready = false;
+
+  for (var i = 0; i < 4; i++) {
+    var li = document.createElement('li');
+    li.className = 'bar-row';
+    li.innerHTML = '<span class="bar-label"></span><span class="bar-track"><span class="bar-fill up"></span></span><span class="bar-val"></span>';
+    list.appendChild(li);
+    rows.push({ label: li.children[0], fill: li.children[1].firstElementChild, val: li.children[2] });
+  }
+
+  function fmt(v) { return (v >= 0 ? '+' : '\u2212') + Math.abs(v).toFixed(2); }
+
+  function render() {
+    var checked = document.querySelector('input[name="contract"]:checked');
+    var c = CONTRACTS[checked ? checked.value : 'm2m'];
+    var tenure = parseInt(tenureEl.value, 10);
+    var charges = parseInt(chargesEl.value, 10);
+    var support = supportEl.checked;
+
+    tenureVal.textContent = tenure + (tenure === 1 ? ' month' : ' months');
+    chargesVal.textContent = '$' + charges;
+
+    var items = [
+      { label: c.name, v: c.w },
+      { label: 'Tenure: ' + tenure + (tenure === 1 ? ' month' : ' months'), v: -0.035 * (tenure - 24) },
+      { label: 'Monthly charges: $' + charges, v: 0.02 * (charges - 65) },
+      { label: support ? 'Has tech support' : 'No tech support', v: support ? -0.5 : 0.3 }
+    ];
+
+    var z = BASE;
+    for (var k = 0; k < items.length; k++) z += items[k].v;
+    var p = 1 / (1 + Math.exp(-z));
+
+    scoreNum.textContent = Math.round(p * 100) + '%';
+    var level = p >= 0.6 ? 'high' : (p >= 0.35 ? 'medium' : 'low');
+    scoreTag.setAttribute('data-level', level);
+    scoreTag.textContent = level.charAt(0).toUpperCase() + level.slice(1) + ' churn risk';
+
+    for (var j = 0; j < items.length; j++) {
+      var it = items[j];
+      var r = rows[j];
+      r.label.textContent = it.label;
+      r.val.textContent = fmt(it.v);
+      r.fill.className = 'bar-fill ' + (it.v >= 0 ? 'up' : 'down');
+      var pct = Math.min(Math.abs(it.v) / SCALE * 50, 50);
+      r.fill.style.width = ready ? pct + '%' : '0';
+    }
+  }
+
+  tenureEl.addEventListener('input', render);
+  chargesEl.addEventListener('input', render);
+  supportEl.addEventListener('change', render);
+  var radios = document.querySelectorAll('input[name="contract"]');
+  for (var m = 0; m < radios.length; m++) radios[m].addEventListener('change', render);
+
+  render();
+  setTimeout(function () { ready = true; render(); }, 450);
+})();
+</script>
+</body>
+</html>
